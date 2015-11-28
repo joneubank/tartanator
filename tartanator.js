@@ -41,9 +41,30 @@ var Tartanator = (function()
             };
 
             /* dither
-            * A random shift applied to the 
+            * Returns a new color based off this color, with a random shift across each of r, g, b, a
+            * 
+            *   Sure maybe this isn't what dither really means but it gives you the randomly varied color
+            *   you might use while dithering...
             */
             color.dither = function(rRange, gRange, bRange, aRange)
+            {
+                rRange = rRange != undefined ? rRange : 0;
+                gRange = gRange != undefined ? gRange : 0;
+                bRange = bRange != undefined ? bRange : 0;
+                aRange = aRange != undefined ? aRange : 0;
+
+                var r = (Math.random()*(rRange)|0)-rRange/2 + color.r;
+                var g = (Math.random()*(gRange)|0)-gRange/2 + color.g;
+                var b = (Math.random()*(bRange)|0)-bRange/2 + color.b;
+                var a = (Math.random()*(aRange)|0)-aRange/2 + color.a;
+
+                return make(r, g, b, a);
+            }
+
+            /* shift
+            * Returns a new color based off this color, with each color channel shifted a defined amount
+            */
+            color.shift = function(rMod, gMod, bMod, aMod)
             {
                 rRange = rRange != undefined ? rRange : 0;
                 gRange = gRange != undefined ? gRange : 0;
@@ -111,9 +132,13 @@ var Tartanator = (function()
         * 
         * By default, the color will have a = 255, and r, g, b each between 0 and 255
         *
-        * Using options you can set min and max values to restrict
+        * Using options you can set min and max values to restrict the set of colors this will generate.
+        * options:
+        *   rMin, gMin, bMin, aMin : the minimum possible value for each channel (default 0, aMin default 255)
+        *   rMax, gMax, bMax, aMax : the maximum possible value for each channel (default 255)
         */
-        var random = function(options) {
+        var random = function(options) 
+        {
             var options = options != undefined ? options : {};
 
             var rMin = options.rMin != undefined ? options.rMin : 0;
@@ -147,7 +172,6 @@ var Tartanator = (function()
 
             return make(r, g, b, a);
         }
-
 
         return {
             make : make,

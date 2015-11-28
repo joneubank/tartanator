@@ -1,7 +1,8 @@
 "use strict";
 
 var display = document.getElementById("tartan-display")
-display
+display.style.backgroundColor = Tartanator.Color.random({aMin:0}).rgba();
+
 // var plaid = Plaid();
 
 // var formAction_randomize = function()

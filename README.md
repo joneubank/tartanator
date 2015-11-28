@@ -17,4 +17,60 @@ The demo folder includes a single page application gui to demonstrate use of the
 
 Tartans created in the demo can be downloaded as images. Feel free to use this a tool for plaid pattern generation or copy the code to use for your own application.
 
-The demo app is hosted here: [Tartanator Demo](http://joneubank.com/things/tartanator)
+The demo app is hosted here: [Tartanator Demo](http://joneubank.com/things/tartanator/demo)
+
+## Object Reference
+### Tartanator
+The object output by tartanator.js
+
+Contains several other object definitions, each described in following sections:
+* Color
+
+### Tartanator.Color
+Color Object factory with the following functions:
+
+#### Tartanator.Color.make(r, g, b, a)
+Returns a Color object with the R, G, B, A values defined in the input.
+
+####Tartanator.Color.random(options)
+Returns a Color object with randomly generated R, G, B, A values. By default, A will be 255 and R, G, B will be between 0 and 255
+
+An options object can be provided to change the range for each channel that will be selected. Available settings and their default values are below:
+```javascript
+
+options = {
+
+    //min and max values for R channel
+    rMin : 0, 
+    rMax : 255,
+
+    //min and max values for G channel
+    gMin : 0, 
+    gMax : 255,
+    
+    //min and max values for B channel
+    bMin : 0, 
+    bMax : 255,
+    
+    //min and max values for A channel
+    aMin : 255, 
+    aMax : 255,
+
+}
+```
+
+### Color Object
+Created by Tartanator.Color factory methods (make() and random()).
+
+| Member | Expected Type | Use |
+| ------ |:-------------:|:---:|
+| r      | Integer (0-255) | Red channel value |
+| g      | Integer (0-255) | Green channel value |
+| b      | Integer (0-255) | Blue channel value |
+| a      | Integer (0-255) | Alpha channel value |
+| | |
+| dither | function(rRange, bRange, gRange, aRange) | new random color random based on this one |
+| shift | function(rMod, bMod, gMod, aMod) | new color defined by this one plus the input parameters |
+| | |
+| hex | function(options) | returns color as string formatted: #000000 |
+| rgba | function(options) | returns color as string formatted: rgba(00, 00, 00, 00) |
