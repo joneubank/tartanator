@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">  
-    <title>Tartanator</title>
+    <title>The Tartanator</title>
     <meta name="description" content="Full page demo of Tartanator">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/dot-luv/jquery-ui.min.css">
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <link href="normalize.css" rel="stylesheet" media="all">
     <link href="styles.css" rel="stylesheet" media="all">
     <!--[if lt IE 9]><script src="html5shiv-printshiv.js" media="all"></script><![endif]-->
@@ -14,6 +17,9 @@
     <div id="tartan-display" class="fixed-fullscreen"></div>
     
     <div id="hud">
+        <div class="bottom-left gui"">
+            <button id="tartan-random"></button>
+        </div>
     </div>
 
     <script src="canvas.js" type="text/javascript"></script>

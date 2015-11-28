@@ -49,15 +49,14 @@
       width:100%;
       height:100%;
 
-      color: #000;
+      color: #fff;
     }
 
     #hud div {
-      background: #fff;
+      background: #000;
       position: absolute;
 
-      margin: 2em;
-      padding: 1em;
+      padding: 1em 2em;
 
       max-height: 40%;
       max-width: 40%;
@@ -83,27 +82,31 @@
 
     #hud .nomax{
       max-width: none;
-      max-height:;
+      max-height: none;
     }
 
     #hud .top-left{
       top: 0px;
       left: 0px;
+      border-radius: 0px 0px 0.5em 0px ;
     }
     
     #hud .top-right{
       top: 0px;
       right: 0px;
+      border-radius: 0px 0px 0px 0.5em;
     }
 
     #hud .bottom-left{
-      top: 0px;
+      bottom: 0px;
       left: 0px;
+      border-radius: 0px 0.5em 0px 0px;
     }
 
     #hud .bottom-right{
       bottom: 0px;
       right: 0px;
+      border-radius: 0.5em 0px 0px 0px;
     }
 
     #hud form input {
@@ -117,7 +120,16 @@
     .hud-label {
       font-weight: bold;
     }
-    
+/* ---------------------------------------------------------
+   Tartonator
+   ---------------------------------------------------------*/
+    #hud button {
+      padding: 0.5em 1em;
+    }
+
+    #tartan-random {
+      width: 20em;
+    }
 /* ---------------------------------------------------------
    Print styles
    ---------------------------------------------------------*/
