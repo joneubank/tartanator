@@ -60,10 +60,10 @@ options = {
 ```
 
 ### Color Object
-Created by Tartanator.Color factory methods (make() and random()).
+Created by **Tartanator.Color** factory methods (make() and random()).
 
 | Member | Expected Type | Use |
-| ------ |:-------------:|:---:|
+|:------:|:-------------:| --- |
 | r      | Integer (0-255) | Red channel value |
 | g      | Integer (0-255) | Green channel value |
 | b      | Integer (0-255) | Blue channel value |
