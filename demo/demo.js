@@ -1,13 +1,19 @@
 "use strict";
+var color1;
+var color2;
+var plaid = Tartanator.blank();
+var datgui = new dat.GUI();
 
 function randomizeTartan()
 {
     // var color1 = Tartanator.Color.make(137, 71, 31);
     // var color2 = Tartanator.Color.make(21, 39, 28);
-    var color1 = Tartanator.Color.random();
-    var color2 = Tartanator.Color.random();
+    color1 = Tartanator.Color.random();
+    color2 = Tartanator.Color.random();
+    console.log(color1);
+    console.log(color2);
 
-    var plaid = Tartanator.blank();
+    plaid = Tartanator.blank();
     plaid.addHorizontal(10, color1);
     plaid.addHorizontal(2, color2);
     plaid.addHorizontal(1, color1);
@@ -22,6 +28,8 @@ function randomizeTartan()
     plaid.addVertical(2, color2);
 
     setBackground(plaid);
+
+    updateDatGui();
 }
 
 
@@ -47,8 +55,7 @@ function setCatchphrase()
 /*
 * HUD setup:
 */
-$("button").button();
-$("#tartan-random").click(function( event ) {
+$("#tartan-random").button().click(function( event ) {
     randomizeTartan();
     setCatchphrase();
 });
@@ -66,6 +73,39 @@ function setBackground(plaid)
     display.style.backgroundImage = "url("+dataUrl+")";
     
 }
+
+
+function updateDatGui()
+{
+    datgui.destroy();
+    datgui = new dat.GUI();
+
+    var colorFolder = datgui.addFolder("Colors");
+    colorFolder.addColor(color1,"guivalue").onChange(function(){
+        color1.updateFromGui();
+        setBackground(plaid);
+    })
+    colorFolder.addColor(color2,"guivalue").onChange(function(){
+        color2.updateFromGui();
+        setBackground(plaid);
+    })
+
+    var hFolder = datgui.addFolder('Horizontal Stripes');
+    for(var i = 0; i < plaid.h.length; i++)
+    {
+        hFolder.add(plaid.h[i],"size", 0, 20).onChange(function(){
+            setBackground(plaid);
+        });
+    }
+
+    var vFolder = datgui.addFolder('Vertical Stripes');
+    for(var i = 0; i < plaid.v.length; i++)
+    {
+        vFolder.add(plaid.v[i],"size", 0, 20).onChange(function(){
+            setBackground(plaid);
+        });
+    }
+};
 
 
 //On Load

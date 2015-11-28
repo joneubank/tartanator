@@ -255,7 +255,7 @@ optgroup,
 select,
 textarea {
   color: inherit; /* 1 */
-  font: inherit; /* 2 */
+  /*font: inherit;  2 removed because of issues with dat.gui*/
   margin: 0; /* 3 */
 }
 
@@ -320,7 +320,7 @@ input::-moz-focus-inner {
  */
 
 input {
-  line-height: normal;
+  /*line-height: normal; remove due to conflict with dat.gui */
 }
 
 /**

@@ -124,6 +124,15 @@ var Tartanator = (function()
                 return "rgba(" + options.r + "," + options.g + "," + options.b + "," + options.a + ")";
             }
 
+            color.guivalue = [r, g, b, a];
+            color.updateFromGui = function()
+            {
+                color.r = color.guivalue[0]|0;
+                color.g = color.guivalue[1]|0;
+                color.b = color.guivalue[2]|0;
+                color.a = color.guivalue[3]|0;
+            }
+
             return color;
         }
 
