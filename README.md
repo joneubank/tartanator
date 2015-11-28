@@ -74,3 +74,37 @@ Created by Tartanator.Color factory methods (make() and random()).
 | | |
 | hex | function(options) | returns color as string formatted: #000000 |
 | rgba | function(options) | returns color as string formatted: rgba(00, 00, 00, 00) |
+
+#### hex(options)
+Function belonging to a generated Color object. Returns the color as a string formatted like: #000000
+
+An object can be passed as options. Options are used to specify a channel's value in the output without modifying the color object's actual value. Leaving an option unspecified will cause the color's actual value to be used.
+
+```javascript
+
+options = {
+
+   r : undefined,
+   g : undefined,
+   b : undefined,
+   a : undefined
+
+}
+```
+
+#### rgba(options)
+Function belonging to a generated Color object. Returns the color as a string formatted like: rgba(00, 00, 00, 00)
+
+An object can be passed as options. Options are used to specify a channel's value in the output without modifying the color object's actual value. Leaving an option unspecified will cause the color's actual value to be used.
+
+```javascript
+
+options = {
+
+   r : undefined,
+   g : undefined,
+   b : undefined,
+   a : undefined
+
+}
+```
