@@ -40,6 +40,8 @@
       background : #000;
     }
 
+    /*  HUD 
+    ------ */
     #hud {
       left: 0px;
       top: 0px;
@@ -152,5 +154,11 @@
 
     figure img { 
       border:1px solid #000; 
+    }
+
+    /* Custom Styles Print:
+    ----------------------- */
+    #hud {
+      display: none;
     }
 }
