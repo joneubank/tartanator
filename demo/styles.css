@@ -130,6 +130,11 @@
     #tartan-random {
       width: 20em;
     }
+
+    /* Normalize and datgui not playing nice */
+    select {
+      color: black;
+    }
 }
 /* ---------------------------------------------------------
    Print styles

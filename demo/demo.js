@@ -182,6 +182,13 @@ function updateObject()
     for (var i = 0; i < srcColors.length; i++)
     {
         var data = srcColors[i][srcColorNames[i]];
+
+        //check if datgui has turned our nice array into an ugly "rgba(xx,xx,xx,xx)" string
+        if(data.indexOf("rgba") >= 0)
+        {
+            //if so, apply this nonsense :P to get our array back
+            data = data.substring(5).slice(0,-1).split(",");
+        }
         var color = T.Color.make(data[0], data[1], data[2], 255);
         colors[srcColorNames[i]] = color;
     }
