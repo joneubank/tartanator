@@ -1,27 +1,26 @@
-"use strict";
-
 /*
 * Tartanator
 * Author: Jon Eubank
-* Version: 0.1
-* Date: 27-11-2015
+* Version: 0.1.2
+* Date: 30-11-2015
 */
 var Tartanator = (function()
 {
+    "use strict";
 
     /*
     * Color Factory
     *   Color.make - Return Color Object defined by rgba with values from 0 to 255
-    *   Color.random - Return Color Object with random rgba. 
+    *   Color.random - Return Color Object with random rgba.
     */
     var Color = (function()
     {
         var make = function(r, g, b, a)
-        {   
-            r = r != undefined ? r : 0;
-            g = g != undefined ? g : 0;
-            b = b != undefined ? b : 0;
-            a = a != undefined ? a : 255;
+        {
+            r = r !== undefined ? r|0 : 0;
+            g = g !== undefined ? g|0 : 0;
+            b = b !== undefined ? b|0 : 0;
+            a = a !== undefined ? a|0 : 255;
 
             if(r < 0) { r = 0;}
             if(g < 0) { g = 0;}
@@ -42,16 +41,16 @@ var Tartanator = (function()
 
             /* dither
             * Returns a new color based off this color, with a random shift across each of r, g, b, a
-            * 
+            *
             *   Sure maybe this isn't what dither really means but it gives you the randomly varied color
             *   you might use while dithering...
             */
             color.dither = function(rRange, gRange, bRange, aRange)
             {
-                rRange = rRange != undefined ? rRange : 0;
-                gRange = gRange != undefined ? gRange : 0;
-                bRange = bRange != undefined ? bRange : 0;
-                aRange = aRange != undefined ? aRange : 0;
+                rRange = rRange !== undefined ? rRange : 0;
+                gRange = gRange !== undefined ? gRange : 0;
+                bRange = bRange !== undefined ? bRange : 0;
+                aRange = aRange !== undefined ? aRange : 0;
 
                 var r = (Math.random()*(rRange)|0)-rRange/2 + color.r;
                 var g = (Math.random()*(gRange)|0)-gRange/2 + color.g;
@@ -59,17 +58,17 @@ var Tartanator = (function()
                 var a = (Math.random()*(aRange)|0)-aRange/2 + color.a;
 
                 return make(r, g, b, a);
-            }
+            };
 
             /* shift
             * Returns a new color based off this color, with each color channel shifted a defined amount
             */
             color.shift = function(rMod, gMod, bMod, aMod)
             {
-                rRange = rRange != undefined ? rRange : 0;
-                gRange = gRange != undefined ? gRange : 0;
-                bRange = bRange != undefined ? bRange : 0;
-                aRange = aRange != undefined ? aRange : 0;
+                rRange = rRange !== undefined ? rRange : 0;
+                gRange = gRange !== undefined ? gRange : 0;
+                bRange = bRange !== undefined ? bRange : 0;
+                aRange = aRange !== undefined ? aRange : 0;
 
                 var r = (Math.random()*(rRange)|0)-rRange/2 + color.r;
                 var g = (Math.random()*(gRange)|0)-gRange/2 + color.g;
@@ -77,15 +76,15 @@ var Tartanator = (function()
                 var a = (Math.random()*(aRange)|0)-aRange/2 + color.a;
 
                 return make(r, g, b, a);
-            }
+            };
 
             /*
-            * returns the color as a string formatted as: #000000 
+            * returns the color as a string formatted as: #000000
             * Note: no alpha value is returned, for that, use color.rgba
             *
             * options:
-            *   The options allow replacement of a parameter of the color with a specific value
-            *       without modifying the color itself
+            *   The options allow replacement of a parameter of the color with a
+            *   specific value without modifying the color itself
             *   r: 0-255, replacement r value to use
             *   g: 0-255, replacement g value to use
             *   b: 0-255, replacement b value to use
@@ -93,21 +92,21 @@ var Tartanator = (function()
             */
             color.hex = function(options)
             {
-                options = options != undefined ? options : {};
-                options.r = options.r != undefined ? options.r : color.r;
-                options.g = options.g != undefined ? options.g : color.g;
-                options.b = options.b != undefined ? options.b : color.b;
-                options.a = options.a != undefined ? options.a : color.a;
+                options = options !== undefined ? options : {};
+                options.r = options.r !== undefined ? options.r : color.r;
+                options.g = options.g !== undefined ? options.g : color.g;
+                options.b = options.b !== undefined ? options.b : color.b;
+                options.a = options.a !== undefined ? options.a : color.a;
 
-                return "#" + ("00"+options.r.toString(16)).substr(-2) + ("00"+options.g.toString(16)).substr(-2) + ("00"+options.b.toString(16)).substr(-2);
-            }
+                return    "#" + ("00"+options.r.toString(16)).substr(-2) + ("00"+options.g.toString(16)).substr(-2) + ("00"+options.b.toString(16)).substr(-2);
+            };
 
             /*
-            * returns the color as a string formatted as: rgba(0,0,0,0) 
+            * returns the color as a string formatted as: rgba(0,0,0,0)
             *
             * options:
-            *   The options allow replacement of a parameter of the color with a specific value
-            *       without modifying the color itself
+            *   The options allow replacement of a parameter of the color with a
+            *    specific value without modifying the color itself
             *   r: 0-255, replacement r value to use
             *   g: 0-255, replacement g value to use
             *   b: 0-255, replacement b value to use
@@ -115,30 +114,21 @@ var Tartanator = (function()
             */
             color.rgba = function(options)
             {
-                options = options != undefined ? options : {};
-                options.r = options.r != undefined ? options.r : color.r;
-                options.g = options.g != undefined ? options.g : color.g;
-                options.b = options.b != undefined ? options.b : color.b;
-                options.a = options.a != undefined ? options.a : color.a;
+                options = options !== undefined ? options : {};
+                options.r = options.r !== undefined ? options.r : color.r;
+                options.g = options.g !== undefined ? options.g : color.g;
+                options.b = options.b !== undefined ? options.b : color.b;
+                options.a = options.a !== undefined ? options.a : color.a;
 
                 return "rgba(" + options.r + "," + options.g + "," + options.b + "," + options.a + ")";
-            }
-
-            color.guivalue = [r, g, b, a];
-            color.updateFromGui = function()
-            {
-                color.r = color.guivalue[0]|0;
-                color.g = color.guivalue[1]|0;
-                color.b = color.guivalue[2]|0;
-                color.a = color.guivalue[3]|0;
-            }
+            };
 
             return color;
-        }
+        };
 
         /** Color.random
         * Return a Color object created using the make(r, g, b, a) function
-        * 
+        *
         * By default, the color will have a = 255, and r, g, b each between 0 and 255
         *
         * Using options you can set min and max values to restrict the set of colors this will generate.
@@ -146,20 +136,20 @@ var Tartanator = (function()
         *   rMin, gMin, bMin, aMin : the minimum possible value for each channel (default 0, aMin default 255)
         *   rMax, gMax, bMax, aMax : the maximum possible value for each channel (default 255)
         */
-        var random = function(options) 
+        var random = function(options)
         {
-            var options = options != undefined ? options : {};
+            options = options !== undefined ? options : {};
 
-            var rMin = options.rMin != undefined ? options.rMin : 0;
-            var gMin = options.gMin != undefined ? options.gMin : 0;
-            var bMin = options.bMin != undefined ? options.bMin : 0;
+            var rMin = options.rMin !== undefined ? options.rMin : 0;
+            var gMin = options.gMin !== undefined ? options.gMin : 0;
+            var bMin = options.bMin !== undefined ? options.bMin : 0;
             //aMin is intentionally 255 to keep the default a value exactly 255
-            var aMin = options.aMin != undefined ? options.aMin : 255;
+            var aMin = options.aMin !== undefined ? options.aMin : 255;
 
-            var rMax = options.rMax != undefined ? options.rMax : 255;
-            var gMax = options.gMax != undefined ? options.gMax : 255;
-            var bMax = options.bMax != undefined ? options.bMax : 255;
-            var aMax = options.aMax != undefined ? options.aMax : 255;
+            var rMax = options.rMax !== undefined ? options.rMax : 255;
+            var gMax = options.gMax !== undefined ? options.gMax : 255;
+            var bMax = options.bMax !== undefined ? options.bMax : 255;
+            var aMax = options.aMax !== undefined ? options.aMax : 255;
 
             if(rMax < rMin) {
                 rMax = rMin;
@@ -180,12 +170,12 @@ var Tartanator = (function()
             var a = (Math.random()*(aMax-aMin)+aMin)|0;
 
             return make(r, g, b, a);
-        }
+        };
 
         return {
             make : make,
             random : random
-        }
+        };
     })();
 
 
@@ -197,46 +187,45 @@ var Tartanator = (function()
         var buildBlend = function(tartan, options){
             context.fillStyle = "#ffffff";
             context.fillRect(0,0,canvas.width, canvas.height);
-            
+
             var ypos = 0;
             for(var i = 0; i < tartan.h.length; i++)
             {
-                var bandwidth = canvas.height/tartan.getHeight()*tartan.h[i].size;
-                if(i == tartan.h.length-1) 
+                var ybandwidth = canvas.height/tartan.getHeight()*tartan.h[i].size;
+                if(i == tartan.h.length-1)
                 {
-                    bandwidth = canvas.height-ypos;
+                    ybandwidth = canvas.height-ypos;
                 }
 
                 context.fillStyle = tartan.h[i].color.hex();
-                context.fillRect(0,ypos,canvas.width, bandwidth);
-                ypos += bandwidth;
+                context.fillRect(0,ypos,canvas.width, ybandwidth);
+                ypos += ybandwidth;
             }
 
             var xpos = 0;
-            for(var i = 0; i < tartan.v.length; i++){
+            for(var j = 0; j < tartan.v.length; j++){
 
 
-                var bandwidth = canvas.width/tartan.getWidth()*tartan.v[i].size;
-                if(i == tartan.v.length-1) 
+                var xbandwidth = canvas.width/tartan.getWidth()*tartan.v[j].size;
+                if(j == tartan.v.length-1)
                 {
-                    bandwidth = canvas.width-xpos;
+                    xbandwidth = canvas.width-xpos;
                 }
 
-                context.fillStyle = tartan.h[i].color.rgba({a:0.5});
-                context.fillRect(xpos, 0, bandwidth, canvas.height);
-                xpos += bandwidth;
+                context.fillStyle = tartan.v[j].color.rgba({a:0.5});
+                context.fillRect(xpos, 0, xbandwidth, canvas.height);
+                xpos += xbandwidth;
             }
-        }
-  
+        };
 
-        var Strip = function(size, color) 
+
+        var Strip = function(size, color)
         {
-            var strip = {
+            return {
                 size: size,
                 color: color
-            }
-            return strip;
-        }
+            };
+        };
 
         var canvas = document.createElement('canvas');
         var context = canvas.getContext('2d');
@@ -263,22 +252,24 @@ var Tartanator = (function()
                 return height;
             },
 
-            addHorizontal: function(width, color) 
+            addHorizontal: function(width, color)
             {
-                this.h.push(Strip(width, color));
+                this.h.push(new Strip(width, color));
             },
             addVertical: function(width, color)
             {
-                this.v.push(Strip(width, color));
+                this.v.push(new Strip(width, color));
             },
             getImageData: function(){ return context.getImageData();},
             getDataUrl: function(){ return canvas.toDataURL();},
 
             build: function(options)
             {
-                options = options != undefined ? options : {};
-                options.style = options.style != undefined ? options.style : "blend";
-                //If a dimension isn't provided, use a 1:1 scaling based on their ratios defined originally
+                options = options !== undefined ? options : {};
+                options.style = options.style !== undefined ? options.style : "blend";
+
+                //If a dimension isn't provided, use a 1:1 scaling based on
+                //their ratios defined originally
                 options.width = isNaN(options.width) ? this.getWidth() : options.width;
                 options.height = isNaN(options.height) ? this.getHeight() : options.height;
 
@@ -293,7 +284,7 @@ var Tartanator = (function()
     var random = function(options)
     {
         return blank();
-    }
+    };
 
     var T = {
         Color : Color,
